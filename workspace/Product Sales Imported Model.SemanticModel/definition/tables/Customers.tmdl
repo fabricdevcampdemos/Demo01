@@ -1,0 +1,88 @@
+table Customers
+	lineageTag: 319a96e0-c8e0-417a-9a37-12f3d965d302
+
+	column CustomerId
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0db49fc5-b781-4435-965b-842633dff42e
+		summarizeBy: none
+		sourceColumn: CustomerId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: 5978d064-9fe5-4305-b0fc-c41caf5a08f1
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 52e2ab1b-4314-43f1-bda5-bb7e31aac5f9
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'City Name'
+		dataType: string
+		lineageTag: 09d813ec-0e13-4a2d-bea4-ed88af692009
+		summarizeBy: none
+		sourceColumn: City Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOB
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0b454eaf-b644-4e05-9483-ea2e9aa2efb2
+		summarizeBy: none
+		sourceColumn: DOB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column City
+		dataType: string
+		lineageTag: 344f3c09-297a-4efe-a079-a71e1c241e84
+		dataCategory: Place
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age = Floor( (TODAY()-Customers[DOB])/365, 1)
+		formatString: 0
+		lineageTag: 710ea202-a41a-4dd3-9cb0-316d0a9ee7a8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		queryGroup: model
+		source = ```
+				let
+				    Source = GetCsvFilesFromAzure,
+				    CsvBinary = Source{[#"Folder Path"=AZURE_STORAGE_ROOT, Name="customers.csv"]}[Content],
+				    ImportedCsv = Csv.Document(CsvBinary, [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    PromotedHeaders = Table.PromoteHeaders(ImportedCsv, [PromoteAllScalars=true]),
+				    MergedColumns = Table.CombineColumns(PromotedHeaders,{"FirstName", "LastName"},Combiner.CombineTextByDelimiter(" ", QuoteStyle.None),"Customer"),
+				    RenamedColumns = Table.RenameColumns(MergedColumns,{{"City", "City Name"}}),
+				    DuplicatedCityColumn = Table.DuplicateColumn(RenamedColumns, "City Name", "City Name Temp"),
+				    DuplicatedCountryColumn = Table.DuplicateColumn(DuplicatedCityColumn, "Country", "Country Temp"),
+				    CreateCityLocationColumn = Table.CombineColumns(DuplicatedCountryColumn,{"City Name Temp", "Country Temp"},Combiner.CombineTextByDelimiter(", ", QuoteStyle.None),"City"),
+				    ChangedType = Table.TransformColumnTypes(CreateCityLocationColumn, {{"CustomerId", Int64.Type}, {"DOB", type date}})
+				in 
+				    ChangedType
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

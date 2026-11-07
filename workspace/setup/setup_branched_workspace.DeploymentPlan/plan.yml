@@ -1,0 +1,18 @@
+$schema: https://developer.microsoft.com/json-schemas/fabric/item/deploymentPlan/definition/plan/1.0.0/schema.json
+version: 1.0.0
+groups:
+  - name: setup_logs_Lakehouse
+    logicalId: 7a72393c-650e-457a-bb38-af66775a092b
+  - name: Product Sales Imported Model_dataset
+    logicalId: 4dbeaad5-3c3f-4c70-982c-061e5a505bab
+    postActions:
+      - name: connect_semantic_model_SynapseNotebook
+        job:
+          type: Execute
+          logicalId: f11cb875-a188-4b07-a8fc-e45204625809
+    dependsOn:
+      - groupName: setup_logs_Lakehouse
+  - name: Product Sales Summary_report
+    logicalId: 3c351442-4f8a-436b-a39e-e67257526727
+    dependsOn:
+      - groupName: Product Sales Imported Model_dataset

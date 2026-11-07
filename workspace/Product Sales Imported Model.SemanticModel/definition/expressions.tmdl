@@ -1,0 +1,39 @@
+expression AZURE_STORAGE_ROOT = "https://fabricdevcampdemos.dfs.core.windows.net/sampledata/productsales/dev/" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = "Text"]
+	lineageTag: 89701245-f82a-481e-8595-efacaa9af10f
+	queryGroup: staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression GetCsvFilesFromAzure =
+		let
+		    Source = AzureStorage.DataLake(AZURE_STORAGE_ROOT)
+		in
+		    Source
+	lineageTag: 9b688772-72ae-4622-9a47-8e664f8b48f8
+	queryGroup: staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Invoices = ```
+		let
+		    Source = GetCsvFilesFromAzure,
+		    CsvBinary = Source{[#"Folder Path"=AZURE_STORAGE_ROOT, Name="invoices.csv"]}[Content],
+		    ImportedCsv = Csv.Document(CsvBinary, [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+		    PromotedHeaders = Table.PromoteHeaders(ImportedCsv, [PromoteAllScalars=true]),
+		    RemovedColumns = Table.RemoveColumns(PromotedHeaders,{"TotalSalesAmount"}),
+		    ChangedType = Table.TransformColumnTypes(RemovedColumns,{{"InvoiceId", Int64.Type}, {"Date", type date}, {"CustomerId", Int64.Type}}),
+		    #"Sorted Rows" = Table.Sort(ChangedType,{{"Date", Order.Descending}})
+		in 
+		    #"Sorted Rows"
+		```
+	lineageTag: 29394cfe-5909-4860-947a-f6c89b7680ef
+	queryGroup: staging
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

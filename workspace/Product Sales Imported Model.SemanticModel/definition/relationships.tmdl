@@ -1,0 +1,12 @@
+relationship AutoDetected_e05f4908-a08f-4dd2-9a5d-281b0b9b7a48
+	fromColumn: Sales.ProductId
+	toColumn: Products.ProductId
+
+relationship 41e15cb0-e4a0-1d7b-648d-5e6fe8cd2e29
+	fromColumn: Sales.CustomerId
+	toColumn: Customers.CustomerId
+
+relationship 7d25b42f-0a0a-88df-f29a-0ca809b75392
+	fromColumn: Sales.Date
+	toColumn: Calendar.Date
+

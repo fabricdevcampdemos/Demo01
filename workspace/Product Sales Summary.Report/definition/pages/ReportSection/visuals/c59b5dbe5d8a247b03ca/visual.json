@@ -1,0 +1,310 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "c59b5dbe5d8a247b03ca",
+  "position": {
+    "x": 680,
+    "y": 359.24762240225431,
+    "z": 7000,
+    "height": 360.69038393800633,
+    "width": 600,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "azureMap",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "City"
+                }
+              },
+              "queryRef": "Customers.City",
+              "nativeQueryRef": "City",
+              "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Sales Revenue"
+                }
+              },
+              "queryRef": "Sales.Sales Revenue",
+              "nativeQueryRef": "Sales Revenue"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Units Sold"
+                }
+              },
+              "queryRef": "Sales.Units Sold",
+              "nativeQueryRef": "Units Sold"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Customer Count"
+                }
+              },
+              "queryRef": "Sales.Customer Count",
+              "nativeQueryRef": "Customer Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "City Rank"
+                }
+              },
+              "queryRef": "Sales.City Rank",
+              "nativeQueryRef": "City Rank"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "First Sale"
+                }
+              },
+              "queryRef": "Sales.First Sale",
+              "nativeQueryRef": "First Sale"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Last Sale"
+                }
+              },
+              "queryRef": "Sales.Last Sale",
+              "nativeQueryRef": "Last Sale"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "mapControls": [
+        {
+          "properties": {
+            "defaultStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'road_shaded_relief'"
+                }
+              }
+            },
+            "showStylePicker": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showNavigationControls": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showSelectionControl": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "autoZoomIncludesReferenceLayer": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "zoom": {
+              "expr": {
+                "Literal": {
+                  "Value": "5.11D"
+                }
+              }
+            },
+            "centerLatitude": {
+              "expr": {
+                "Literal": {
+                  "Value": "53.251856776907374D"
+                }
+              }
+            },
+            "centerLongitude": {
+              "expr": {
+                "Literal": {
+                  "Value": "-4.91671434789896D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "bubbleLayer": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            },
+            "minBubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            },
+            "maxRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "15L"
+                }
+              }
+            },
+            "bubbleStrokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            },
+            "autoStrokeColor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "layerPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "mapTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

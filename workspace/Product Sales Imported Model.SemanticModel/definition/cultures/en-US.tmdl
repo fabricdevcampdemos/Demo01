@@ -1,0 +1,32 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "sales.customer_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sales",
+			          "ConceptualProperty": "Customer Count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Customers": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+
