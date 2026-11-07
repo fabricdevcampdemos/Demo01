@@ -3,14 +3,18 @@
 # METADATA ********************
 
 # META {
+# META   "kernel_info": {
+# META     "name": "synapse_pyspark"
+# META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "ff155a6e-91e6-466d-b47e-f9029704a396",
-# META       "default_lakehouse_name": "Logs",
-# META       "default_lakehouse_workspace_id": "27cad5cb-c945-4e8e-a7e2-7b9acd87af29",
+# META       "default_lakehouse": "7a72393c-650e-457a-bb38-af66775a092b",
+# META       "default_lakehouse_name": "setup_logs",
+# META       "default_lakehouse_workspace_id": "00000000-0000-0000-0000-000000000000",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "ff155a6e-91e6-466d-b47e-f9029704a396"
+# META           "id": "7a72393c-650e-457a-bb38-af66775a092b",
+# META           "workspace_id": "00000000-0000-0000-0000-000000000000"
 # META         }
 # META       ]
 # META     }
